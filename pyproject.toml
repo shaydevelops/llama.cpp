@@ -21,18 +21,12 @@ sentencepiece = ">=0.1.98,<=0.2.0"
 transformers = ">=4.35.2,<5.0.0"
 protobuf = ">=4.21.0,<5.0.0"
 gguf = { path = "./gguf-py" }
-torch = { version = "^2.2.0", source = "pytorch" }
+# Use a more flexible specification for torch without version constraints
+# This will let Poetry find the best matching version for your system
+torch = "*"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 pytest = "^5.2"
-
-
-# Force wheel + cpu
-# For discussion and context see https://github.com/python-poetry/poetry#6409
-[[tool.poetry.source]]
-name = "pytorch"
-url = "https://download.pytorch.org/whl/cpu"
-priority = "explicit"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
